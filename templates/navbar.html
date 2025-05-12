@@ -1,0 +1,11 @@
+<nav class="navbar">
+    <div class="logo">
+        <a href="{{ url_for('dashboard') }}">Movie Watchlist</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('search') }}">Search</a></li>
+        <li><a href="{{ url_for('profile') }}">Profile</a></li>
+        <li><a href="{{ url_for('logout') }}" class="btn-logout">Logout</a></li>
+    </ul>
+</nav>

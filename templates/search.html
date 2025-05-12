@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Movies - Movie Watchlist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container dashboard-container">
+        {% include 'navbar.html' %}
+        
+        <main class="search-page">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <div class="search-box large-search">
+                <h2>Search for Movies</h2>
+                <p>Search by title to find movies to add to your watchlist.</p>
+                <form action="{{ url_for('search') }}" method="post">
+                    <div class="search-input">
+                        <input type="text" name="query" placeholder="Enter movie title...">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="search-tips">
+                <h3>Search Tips</h3>
+                <ul>
+                    <li>Try using the full movie title for more accurate results</li>
+                    <li>Include the release year if you're looking for a specific version</li>
+                    <li>Search for actors or directors to find their filmography</li>
+                </ul>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2023 Movie Watchlist</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Watchlist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Movie Watchlist</h1>
+            <div class="tagline">Track the movies you want to watch and keep a record of what you've seen.</div>
+        </header>
+        
+        <div class="hero-section">
+            <div class="hero-content">
+                <h2>Your Personal Movie Journal</h2>
+                <p>Keep track of movies you want to see, rate the ones you've watched, and discover new favorites.</p>
+                <div class="cta-buttons">
+                    <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-secondary">Register</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- Decorative image showing movie posters -->
+                <div class="poster-stack">
+                    <!-- Simple CSS-based movie poster stack -->
+                    <div class="poster poster1"></div>
+                    <div class="poster poster2"></div>
+                    <div class="poster poster3"></div>
+                </div>
+            </div>
+        </div>
+        
+        <section class="features">
+            <div class="feature-box">
+                <h3>Track Movies</h3>
+                <p>Add movies to your watchlist and mark them as watched when you're done.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Rate & Review</h3>
+                <p>Give ratings and write reviews for the movies you've watched.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Discover</h3>
+                <p>Search for new movies to add to your collection.</p>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2023 Movie Watchlist</p>
+        </footer>
+    </div>
+</body>
+</html>

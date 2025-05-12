@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Movie Watchlist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container dashboard-container">
+        {% include 'navbar.html' %}
+
+        <main class="dashboard">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <div class="search-box">
+                <h2>Find Movies</h2>
+                <form action="{{ url_for('search') }}" method="post">
+                    <div class="search-input">
+                        <input type="text" name="query" placeholder="Search movies...">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+
+            <section class="watchlist-section">
+                <h2>My Watchlist</h2>
+                {% if watchlist %}
+                <div class="movie-grid">
+                    {% for movie in watchlist %}
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            {% if movie.poster_path %}
+                            <img src="{{ poster_base_url }}{{ movie.poster_path }}" alt="{{ movie.title }}">
+                            {% else %}
+                            <div class="no-poster">No Image</div>
+                            {% endif %}
+                        </div>
+                        <div class="movie-info">
+                            <h3><a href="{{ url_for('movie_details', imdb_id=movie.imdb_id) }}">{{ movie.title }}</a>
+                            </h3>
+                            <div class="movie-actions">
+                                <form action="{{ url_for('toggle_watched', movie_id=movie.id) }}" method="post">
+                                    <button type="submit" class="btn-action">Mark as Watched</button>
+                                </form>
+                                <form action="{{ url_for('remove_movie', movie_id=movie.id) }}" method="post">
+                                    <button type="submit" class="btn-action btn-delete">Remove</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="empty-list">Your watchlist is empty. <a href="{{ url_for('search') }}">Search for movies</a>
+                    to add.</p>
+                {% endif %}
+            </section>
+
+
+            <section class="watched-section">
+                <h2>Movies I've Watched</h2>
+                {% if watched %}
+                <div class="movie-grid">
+                    {% for movie in watched %}
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            {% if movie.poster_path %}
+                            <img src="{{ poster_base_url }}{{ movie.poster_path }}" alt="{{ movie.title }}">
+                            {% else %}
+                            <div class="no-poster">No Image</div>
+                            {% endif %}
+                        </div>
+                        <div class="movie-info">
+                            <h3><a href="{{ url_for('movie_details', tmdb_id=movie.imdb_id) }}">{{ movie.title }}</a>
+                            </h3>
+                            <p class="release-date">{{ movie.release_date }}</p>
+
+                            <div class="movie-actions">
+                                <form action="{{ url_for('toggle_watched', movie_id=movie.id) }}" method="post">
+                                    <button type="submit" class="btn-action">Mark as Unwatched</button>
+                                </form>
+                                <form action="{{ url_for('remove_movie', movie_id=movie.id) }}" method="post">
+                                    <button type="submit" class="btn-action btn-delete">Remove</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="empty-list">You haven't marked any movies as watched yet.</p>
+                {% endif %}
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 Movie Watchlist</p>
+        </footer>
+    </div>
+</body>
+
+</html>
