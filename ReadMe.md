@@ -3,7 +3,6 @@
 A simple web application built with Flask that allows users to register, log in, and manage their personal movie watchlists. Users can search for movies, view details, and track their favorite films.
 
 ## 📁 Project Structure
-
 ```bash
 movie-watchlist/
 │       app.py # Main Flask application
@@ -31,6 +30,8 @@ movie-watchlist/
         search.html
         search_results.html
 ```
+
+---
 
 ## 🚀 Getting Started
 
