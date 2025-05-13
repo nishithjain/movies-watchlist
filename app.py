@@ -94,6 +94,8 @@ def logout():
 def dashboard():
     watchlist = Movie.query.filter_by(user_id=current_user.id, watched=False).all()
     watched = Movie.query.filter_by(user_id=current_user.id, watched=True).all()
+    for movie in watchlist:
+        print(movie.title, movie.poster_url)
     return render_template('dashboard.html', watchlist=watchlist, watched=watched)
 
 @app.route('/search', methods=['GET', 'POST'])

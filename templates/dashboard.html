@@ -38,8 +38,8 @@
                     {% for movie in watchlist %}
                     <div class="movie-card">
                         <div class="movie-poster">
-                            {% if movie.poster_path %}
-                            <img src="{{ poster_base_url }}{{ movie.poster_path }}" alt="{{ movie.title }}">
+                            {% if movie.poster_url %}
+                            <img src="{{ poster_base_url }}{{ movie.poster_url }}" alt="{{ movie.title }}">
                             {% else %}
                             <div class="no-poster">No Image</div>
                             {% endif %}
@@ -80,7 +80,7 @@
                             {% endif %}
                         </div>
                         <div class="movie-info">
-                            <h3><a href="{{ url_for('movie_details', tmdb_id=movie.imdb_id) }}">{{ movie.title }}</a>
+                            <h3><a href="{{ url_for('movie_details', imdb_id=movie.imdb_id) }}">{{ movie.title }}</a>
                             </h3>
                             <p class="release-date">{{ movie.release_date }}</p>
 

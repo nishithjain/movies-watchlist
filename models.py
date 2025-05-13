@@ -45,7 +45,7 @@ class Movie(db.Model):
 class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    tmdb_id = db.Column(db.Integer, nullable=False)
+    imdb_id  = db.Column(db.Integer, nullable=False)
     rating = db.Column(db.Integer, nullable=False)  # Rating out of 10
     review_text = db.Column(db.Text)
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
@@ -54,7 +54,7 @@ class Review(db.Model):
     user = db.relationship('User', back_populates='reviews')
     
     def __repr__(self):
-        return f'<Review {self.id} for Movie {self.tmdb_id}>'
+        return f'<Review {self.id} for Movie {self.imdb_id}>'
 
 
 # Watchlist Association Table (many-to-many relationship)
